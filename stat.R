@@ -10,7 +10,7 @@ setwd("/Volumes/Garage/Daily/Tiram II")
 
 path <- "/Volumes/Garage/Daily/Tiram II/dataset.xlsx"
 
-# Read each sheet from the Excel file and add a 'Sheet' column
+# Read each sheet from the Excel file and add a 'pool' column
 sheet1 <- read_excel(path = path, sheet = "20_sample") %>%
     mutate(pool = "20 individu")
 
@@ -213,7 +213,7 @@ ggplot(dataframe, aes(x = age, y = mean_weight, color = pool)) +
 
 ## Prdicted to feature years
 # Step 1: Generate ages for the next 5 to 10 years
-future_years <- seq(from = 0.5, to = 2, by = 0.1) # Age in years, using 0.1 to make it smooth
+future_years <- seq(from = 0.5, to = 5, by = 0.1) # Age in years, using 0.1 to make it smooth
 
 # Step 2: Predict lengths for future ages using fitted parameters
 future_lengths <- VBGF_length(Linf = fitted_Linf, K = fitted_K, t0 = fitted_t0, t = future_years)
@@ -258,7 +258,7 @@ ggplot() +
     # Labels and title
     labs(
         title = "Observed vs Fitted and Future Predicted Widths using VBGF",
-        x = "Age (years)", y = "Length (mm)"
+        x = "Age (years)", y = "Width (mm)"
     ) +
 
     # Theme settings
@@ -278,7 +278,7 @@ ggplot() +
     # Labels and title
     labs(
         title = "Observed vs Fitted and Future Predicted Weights using VBGF",
-        x = "Age (years)", y = "Length (mm)"
+        x = "Age (years)", y = "Weight (g)"
     ) +
 
     # Theme settings
